@@ -1,10 +1,12 @@
 import "../assets/style.css";
 import { getVideos } from "../api/video";
 import {useState, useEffect} from "react";
+import { useOutletcContext } from "react-router-dom";
+
 
 
 const Main = () => {
-      const [videos, setVideos] = useState([]);
+      const {videos} = useOuletContext();
       const videoAPI = async () => {
         const result = await getVideos();
         setVideos(result.data);

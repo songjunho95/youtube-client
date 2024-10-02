@@ -2,6 +2,8 @@ import { FaBars } from "react-icons/fa6";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import logo from "../assets/logo.svg";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.header`
   a {
@@ -71,11 +73,27 @@ const Header = () => {
           </button>
         </div>
         <div className="header-end">
-          <button type="button" onclick="location.href='/login'">
-            로그인
-          </button>
+          {token === null ? (
+            <button type="button" onclick="location.href='/login'">
+              로그인
+            </button>
+          ) : (
+            <button></button>
+          )}
         </div>
       </header>
     </StyledHeader>
   );
 };
+
+const Header = () => {
+  const navigate = useNavigate();
+  const [token, setToken] = useState(null);
+
+  // 처음 불러오는 시점 - 로그인 여부 체크
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
+};
+
+export default Header;

@@ -8,6 +8,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [{ index: true, element: <Main /> }],
   },
+  {
+    path: "/login",
+    element,
+  },
 ]);
 
 export default router;
