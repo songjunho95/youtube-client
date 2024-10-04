@@ -1,0 +1,18 @@
+body.dark {
+  #root {
+    background-color: black;
+    color: white;
+  }
+
+  header,
+  nav {
+    background-color: black;
+    color: white;
+  }
+
+  svg,
+  span,
+  p {
+    color: white;
+  }
+}

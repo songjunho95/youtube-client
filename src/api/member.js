@@ -1,18 +1,17 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8080/api/member",
+  baseURL: "http://localhost:8080/api/member/",
 });
 
-export const Signup = async (data) => {
+export const signup = async (data) => {
   return await instance.post("signup", data);
 };
 
 export const login = async (data) => {
-try{
+  try {
     return await instance.post("login", data);
-} catch {
-    new Error
-}
-
+  } catch {
+    new Error("LOGIN FAIL");
+  }
 };
