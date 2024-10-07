@@ -5,16 +5,18 @@ import {
   initState as videoState,
   videoReduvcer,
   fetchVideo,
+  fetchVideos,
 } from "../../reducers/videoReducer";
 
 const Detail = () => {
   const { videoCode } = useParams();
   const [state, dispatch] = useReducer(videoReduvcer, videoState);
 
-  const { video } = state;
+  const { video, videos } = state;
 
   useEffect(() => {
     fetchVideo(dispatch, videoCode);
+    fetchVideos(dispatch, 1, "");
   }, []);
 
   return (
@@ -35,14 +37,16 @@ const Detail = () => {
         <div className="video-detail-info">{video?.videoDesc}</div>
       </div>
       <div className="video-list">
-        <a className="video-list-card">
-          <img />
+        {videos.map((video)= > (
+          <a href={`/video/${video.videoCode}`} className="video-list-card" key={video.videoCode}>
+          <img src={video.videoImg}/>
           <div className="video-list-desc">
-            <h4></h4>
-            <p></p>
-            <p className="video-meta">조회수 회</p>
+            <h4>{video.videoTitle}</h4>
+            <p>{video.channel.channelName}</p>
+            <p className="video-meta">조회수 {video.videoCount}회</p>
           </div>
         </a>
+        ))}
       </div>
     </main>
   );
