@@ -15,13 +15,17 @@ export const AuthProvider = ({ children }) => {
 
   // 로그인 기능 : 토큰 저장
   const login = (token) => {
-    localStorage.setItem("token", token);
-    setToken(token);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("id", data.id);
+    setToken(data.token);
+    setId(data.id);
   };
 
   // 로그아웃 기능 : 토큰 삭제
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    setId(null);
     setToken(null);
   };
 
